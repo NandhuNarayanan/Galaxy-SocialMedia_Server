@@ -19,9 +19,7 @@ app.use(morgan('tiny'))
 const port = process.env.PORT || 3001
 const connectionString = process.env.DB_CONNECTION_STRING
 
-app.use(cors({
-    origin:origin
-}))
+app.use(cors())
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 
