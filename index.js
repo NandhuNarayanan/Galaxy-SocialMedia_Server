@@ -13,7 +13,7 @@ let morgan = require('morgan')
 require('dotenv').config()
 const cors = require('cors')
 const app = express()
-const origin = ['https://galaxy-media.netlify.app/login']
+const origin = ['https://galaxy-media.netlify.app']
 app.use(morgan('tiny'))
 
 const port = process.env.PORT || 3001
@@ -54,7 +54,7 @@ app.listen(port,()=>{
 
 const io = require('socket.io')(8800, {
     cors: {
-      origin: 'http://localhost:3000',
+      origin: 'https://galaxy-media.netlify.app',
     },
   })
   
