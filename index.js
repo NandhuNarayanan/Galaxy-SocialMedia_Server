@@ -13,13 +13,15 @@ let morgan = require('morgan')
 require('dotenv').config()
 const cors = require('cors')
 const app = express()
-
+const origin = ['https://galaxy-media.netlify.app/login']
 app.use(morgan('tiny'))
 
 const port = process.env.PORT || 3001
 const connectionString = process.env.DB_CONNECTION_STRING
 
-app.use(cors())
+app.use(cors({
+    origin:origin
+}))
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 
