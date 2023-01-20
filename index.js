@@ -21,7 +21,7 @@ const connectionString = process.env.DB_CONNECTION_STRING
 
 app.use(cors(
   {
-    origin:origin
+    // origin:origin
   }
 ))
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
@@ -56,7 +56,9 @@ app.listen(port,()=>{
 
 const io = require('socket.io')(8800, {
     cors: {
-      origin: 'https://galaxy-media.netlify.app',
+      // origin: 'https://galaxy-media.netlify.app',
+      origin: 'http://localhost:3000'
+      
     },
   })
   

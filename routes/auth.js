@@ -5,7 +5,7 @@ const verifyJWT = require('../middleware/verifyJWT');
 
 router.get('/refresh', authController.refresh)
 router.get('/logout/:id',verifyJWT,authController.logout)
-router.get('/getUsers/:id',verifyJWT,authController.getUsers)
+router.get('/getUsers/:id',authController.getUser)
 router.get('/getAllUsers/:id',verifyJWT,authController.getAllUsers)
 
 router.post('/signup', authController.signup)

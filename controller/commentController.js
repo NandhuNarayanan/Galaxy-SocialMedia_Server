@@ -9,7 +9,7 @@ exports.comment = (async(req,res)=>{
         const userId = mongoose.Types.ObjectId(req.body.userId)
         const commentFound = await commentModel.findOne({postId:postId})
         if (!commentFound) {
-            const newComment = new commentModel({postId:postId,comments:[{userId:userId,content}]})
+            const newComment = new commentModel({postId:postId,comments:{userId:userId,content}})
             newComment.save()
            return res.status(201).json({message:'commented successfully'})
         }

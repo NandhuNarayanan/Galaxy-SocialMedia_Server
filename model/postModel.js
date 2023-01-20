@@ -10,10 +10,7 @@ const postSchema = mongoose.Schema(
     image: [{}],
     
     // likedUsers: [{ type: mongoose.Schema.Types.ObjectId,ref:'users' }],
-    likedUsers:{
-        type: Array,
-        default: [],
-      },
+    likedUsers:[],
     isDeleted: { type: Boolean, default: false },
     hiddenUsers: [{ type: mongoose.Types.ObjectId }],
     isLiked:{type:Boolean, default:false},

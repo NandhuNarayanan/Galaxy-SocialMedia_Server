@@ -115,8 +115,9 @@ exports.logout = async (req, res) => {
   }
 }
 
-exports.getUsers = async (req, res) => {
+exports.getUser = async (req, res) => {
   try {
+    console.log(req.params.id,'undifiiiiiii');
     const user = mongoose.Types.ObjectId(req.params.id)
     const newUser = await userModel.findOne({ _id: user })
     res.status(200).json({ newUser })

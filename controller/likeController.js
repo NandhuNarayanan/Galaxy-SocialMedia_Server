@@ -13,7 +13,7 @@ exports.liked = async (req, res) => {
 
     const likedUser = await postModel.findOne({
      $and:[{_id:postId},
-      {likedUsers: [userId]}]
+      {likedUsers: userId}]
     })
     console.log(likedUser,'ooooooooooooooooo');
     if (likedUser) {
@@ -27,7 +27,7 @@ exports.liked = async (req, res) => {
           _id:postId,
         },
         {
-          $pull: { likedUsers: [userId] },
+          $pull: { likedUsers: userId },
         },
       )
       console.log(unLike ,'unlike');
@@ -46,13 +46,13 @@ exports.liked = async (req, res) => {
           _id:postId
         },
         {
-          $push: { likedUsers: [userId] },
+          $push: { likedUsers: userId },
         },
       )
       console.log(liked,'asdasddsadsa');
       const postNotification = await postModel.findOne({
         $and:[{_id:postId},
-          {likedUsers: [userId]}]
+          {likedUsers: userId}]
         })
       
       const user = await userModel.findById({_id:userId});
