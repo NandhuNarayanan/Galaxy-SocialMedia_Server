@@ -117,7 +117,6 @@ exports.logout = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
-    console.log(req.params.id,'undifiiiiiii');
     const user = mongoose.Types.ObjectId(req.params.id)
     const newUser = await userModel.findOne({ _id: user })
     res.status(200).json({ newUser })
@@ -133,7 +132,6 @@ exports.getAllUsers = async (req, res) => {
   try {
     console.log(req.params)
     const loginUser = mongoose.Types.ObjectId(req.params.id)
-    console.log(loginUser, 'lohin')
     const suggetionUser = await userModel.find({
       $and: [{ _id: { $ne: loginUser } }, { followers: { $nin: [loginUser] } }],
     })
@@ -149,7 +147,6 @@ exports.getAllUsers = async (req, res) => {
 
 // login with google
 exports.googleLogin = asyncHandler(async (req, res) => {
-  console.log(req.body,'goooogleeeeee');
   const credential = req.body.userObject
   const { email, given_name, family_name } = credential
   const newUser = await userModel.findOne({ email }).exec()
