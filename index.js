@@ -8,6 +8,7 @@ const chatRouter = require('./routes/chat')
 const messageRouter = require('./routes/message')
 const storyRouter = require('./routes/story')
 const adminRouter = require('./routes/admin')
+const cors = require('cors')
 
 
 const {createServer}=require('http');
@@ -16,7 +17,6 @@ const {Server} = require('socket.io')
 
 let morgan = require('morgan')
 require('dotenv').config()
-const cors = require('cors')
 const app = express()
 const origin = [`${process.env.CLIENT_URL}`]
 app.use(morgan('tiny'))

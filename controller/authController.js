@@ -45,7 +45,7 @@ exports.login = async (req, res) => {
     const newUser = await userModel.findOne({ email })
     if (!newUser) return res.status(401).json({ message: 'invalid user' })
     const result = await bcrypt.compare(password, newUser.password)
-    if (!result) return res.status(401).json({ message: 'invalid password' })
+    if (!result) return res.status(400).json({ message: 'invalid password' })
     const accessToken = jwt.createAccessToken(newUser._id)
     const refreshToken = jwt.createRefreshToken(newUser._id)
     await userModel.findByIdAndUpdate(newUser._id, { $push: { refreshToken } })
