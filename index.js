@@ -9,11 +9,16 @@ const messageRouter = require('./routes/message')
 const storyRouter = require('./routes/story')
 const adminRouter = require('./routes/admin')
 
+
+const {createServer}=require('http');
+const {Server} = require('socket.io')
+
+
 let morgan = require('morgan')
 require('dotenv').config()
 const cors = require('cors')
 const app = express()
-const origin = ['https://galaxy-media.netlify.app']
+const origin = [`${process.env.CLIENT_URL}`]
 app.use(morgan('tiny'))
 
 const port = process.env.PORT || 3001
@@ -47,17 +52,16 @@ app.use('/story',storyRouter)
 app.use('/admin',adminRouter)
 
  
-app.listen(port,()=>{
-    console.log("server running on port :" + port);
-})
+
 
 
 //socket.io
 
-const io = require('socket.io')(8800, {
+const httpServer = createServer(app);
+
+const io = new Server(httpServer, {
     cors: {
-      origin: 'https://galaxy-media.netlify.app',
-      // origin: 'http://localhost:3000'
+      origin: `${process.env.CLIENT_URL}`,
       
     },
   })
@@ -96,3 +100,6 @@ const io = require('socket.io')(8800, {
     })
   })
   
+  httpServer.listen(port,()=>{
+    console.log("server running on port :" + port);
+})
