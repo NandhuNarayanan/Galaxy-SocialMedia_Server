@@ -27,7 +27,8 @@ const connectionString = process.env.DB_CONNECTION_STRING
 app.use(cors(
   {
     origin:origin,
-    credentials:true
+    credentials:true,
+    optionsSuccessStatus:200
   }
 ))
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
